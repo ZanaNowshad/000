@@ -3,7 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@zaibuld/ui", "@zaibuld/api", "@zaibuld/ai"],
   experimental: {
-    serverActions: true,
     serverComponentsExternalPackages: [],
   },
   images: {
