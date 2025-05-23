@@ -1,3 +1,8 @@
+/**
+ * @jest-environment jsdom
+ */
+
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import WorkspacePage from './page';
 
@@ -5,6 +10,16 @@ import WorkspacePage from './page';
 jest.mock('@/components/workspace', () => ({
   Editor: () => <div data-testid="editor">Editor Component</div>,
   AIChat: () => <div data-testid="ai-chat">AI Chat Component</div>,
+}));
+
+// Mock the Lucide icons
+jest.mock('lucide-react', () => ({
+  Code: () => <div>Code Icon</div>,
+  Terminal: () => <div>Terminal Icon</div>,
+  Play: () => <div>Play Icon</div>,
+  Save: () => <div>Save Icon</div>,
+  FileText: () => <div>FileText Icon</div>,
+  Settings: () => <div>Settings Icon</div>,
 }));
 
 describe('Workspace Page', () => {
@@ -22,7 +37,7 @@ describe('Workspace Page', () => {
     expect(screen.getByTestId('editor')).toBeInTheDocument();
     
     // Click the terminal tab
-    fireEvent.click(screen.getByText('Terminal'));
+    fireEvent.click(screen.getByText(/Terminal/));
     
     // Now the terminal should be visible and editor should not
     expect(screen.queryByTestId('editor')).not.toBeInTheDocument();
