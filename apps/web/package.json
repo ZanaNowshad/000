@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start --port 12000",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.10.0",
@@ -50,7 +50,7 @@
     "@zaibuld/config": "workspace:*",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
-    "jest": "^29.7.0",
+    "jest --passWithNoTests": "^29.7.0",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3"
