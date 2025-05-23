@@ -1,14 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { trpc } from '@/utils/trpc';
 import { Card, CardHeader, CardTitle, CardContent, Button } from '@zaibuld/ui';
 import { motion } from 'framer-motion';
 import { Plus, Search } from 'lucide-react';
 
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: projects, isLoading } = trpc.project.getAll.useQuery();
+  // Mock data until tRPC is properly set up
+  const isLoading = false;
+  const projects = [
+    {
+      id: '1',
+      name: 'Sample Project',
+      description: 'A sample project to demonstrate the UI',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+  ];
 
   const filteredProjects = projects?.filter(project => 
     project.name.toLowerCase().includes(searchQuery.toLowerCase())

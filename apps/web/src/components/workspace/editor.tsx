@@ -70,7 +70,7 @@ button:hover {
 };
 
 export function Editor() {
-  const [files, setFiles] = useState(defaultFiles);
+  const [files] = useState(defaultFiles);
 
   return (
     <Card className="h-full">

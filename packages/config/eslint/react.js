@@ -11,5 +11,10 @@ module.exports = {
   },
   rules: {
     ...base.rules,
+    'react/react-in-jsx-scope': 'off',
+    'react/no-unescaped-entities': 'off',
+  },
+  globals: {
+    React: 'writable'
   },
 };

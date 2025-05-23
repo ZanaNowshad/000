@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as RadixForm from '@radix-ui/react-form';
 import { cn } from '../utils';
-import { motion } from 'framer-motion';
 
 const Form = RadixForm.Root;
 
@@ -53,23 +52,18 @@ const FormSubmit = React.forwardRef<
   React.ElementRef<typeof RadixForm.Submit>,
   React.ComponentPropsWithoutRef<typeof RadixForm.Submit> & { animated?: boolean }
 >(({ className, animated = false, ...props }, ref) => {
-  const Comp = animated ? motion(RadixForm.Submit) : RadixForm.Submit;
-  const animationProps = animated
-    ? {
-        whileHover: { scale: 1.05 },
-        whileTap: { scale: 0.95 },
-        transition: { duration: 0.2 },
-      }
-    : {};
+  // Note: animation functionality temporarily removed to fix type issues
+  // Will be re-implemented in a future update
+  const animationClass = animated ? 'hover:scale-105 active:scale-95 transition-transform' : '';
 
   return (
-    <Comp
+    <RadixForm.Submit
       ref={ref}
       className={cn(
         'inline-flex h-10 items-center justify-center rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+        animationClass,
         className
       )}
-      {...animationProps}
       {...props}
     />
   );

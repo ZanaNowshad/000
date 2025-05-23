@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils';
-import { motion } from 'framer-motion';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none',
@@ -34,20 +33,14 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, animated = false, ...props }, ref) => {
-    const Comp = animated ? motion.button : 'button';
-    const animationProps = animated
-      ? {
-          whileHover: { scale: 1.05 },
-          whileTap: { scale: 0.95 },
-          transition: { duration: 0.2 },
-        }
-      : {};
-
+    // Note: animation functionality temporarily removed to fix type issues
+    // Will be re-implemented in a future update
+    const animationClass = animated ? 'hover:scale-105 active:scale-95 transition-transform' : '';
+    
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+      <button
+        className={cn(buttonVariants({ variant, size, className }), animationClass)}
         ref={ref}
-        {...animationProps}
         {...props}
       />
     );
