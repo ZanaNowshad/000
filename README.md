@@ -2,6 +2,10 @@
 
 ZAIBuilD is a next-generation, AI-driven full-stack IDE and orchestration platform built on modern web technologies.
 
+## Overview
+
+This repository contains the initial setup for the ZAIBuilD project. The full implementation will be added through pull requests.
+
 ## Features
 
 - **AI-Powered Development**: Leverage GPT-4 Turbo for code generation, project scaffolding, and intelligent assistance
