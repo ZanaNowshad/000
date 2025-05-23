@@ -23,11 +23,11 @@ const projects: Project[] = [
 ];
 
 export const projectRouter = router({
-  list: publicProcedure.query(() => {
+  getAll: publicProcedure.query(() => {
     return projects;
   }),
   
-  byId: publicProcedure
+  getById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ input }) => {
       const project = projects.find((p) => p.id === input.id);
@@ -55,5 +55,42 @@ export const projectRouter = router({
       
       projects.push(project);
       return project;
+    }),
+
+  update: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        name: z.string().min(1).max(100).optional(),
+        description: z.string().optional(),
+      })
+    )
+    .mutation(({ input }) => {
+      const projectIndex = projects.findIndex((p) => p.id === input.id);
+      if (projectIndex === -1) {
+        throw new Error(`No project with id '${input.id}'`);
+      }
+      
+      const updatedProject: Project = {
+        ...projects[projectIndex],
+        ...(input.name && { name: input.name }),
+        ...(input.description !== undefined && { description: input.description }),
+        updatedAt: new Date(),
+      };
+      
+      projects[projectIndex] = updatedProject;
+      return updatedProject;
+    }),
+
+  delete: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(({ input }) => {
+      const projectIndex = projects.findIndex((p) => p.id === input.id);
+      if (projectIndex === -1) {
+        throw new Error(`No project with id '${input.id}'`);
+      }
+      
+      projects.splice(projectIndex, 1);
+      return { success: true };
     }),
 });
