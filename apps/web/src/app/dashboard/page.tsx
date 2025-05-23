@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, Button } from '@zaibuld/ui';
-import { motion } from 'framer-motion';
 import { Plus, Search } from 'lucide-react';
 
 export default function Dashboard() {
@@ -67,13 +66,12 @@ export default function Dashboard() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects?.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="opacity-100 transition-all duration-300"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <Card animated>
+              <Card className="hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
                   <CardTitle>{project.name}</CardTitle>
                 </CardHeader>
@@ -84,7 +82,7 @@ export default function Dashboard() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}

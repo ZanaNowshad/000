@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ["@zaibuld/config/eslint/react"],
+  extends: ["./packages/config/eslint/react"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
