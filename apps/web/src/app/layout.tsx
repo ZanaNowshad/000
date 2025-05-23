@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { TRPCProvider } from '@/providers/trpc-provider';
 import { Navbar, Footer } from '@/components/layout';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'ZAIBuilD - AI-driven Full-Stack IDE',
@@ -18,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+      <body className="font-sans">
         <TRPCProvider>
           <Navbar />
           <main className="pt-16">

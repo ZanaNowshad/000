@@ -1,12 +1,26 @@
 'use client';
 
-import { useState } from 'react';
 import { Card, CardContent } from '@zaibuld/ui';
-import { Sandpack } from '@codesandbox/sandpack-react';
-import { atomDark } from '@codesandbox/sandpack-themes';
 
-const defaultFiles = {
-  '/App.js': `import { useState } from 'react';
+// Mock editor component for build
+export function Editor() {
+  return (
+    <Card className="h-full">
+      <CardContent className="p-4 h-full">
+        <div className="bg-gray-900 text-gray-100 p-4 rounded-lg h-full font-mono text-sm overflow-auto">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex space-x-2">
+              <span className="text-xs px-2 py-1 bg-gray-800 rounded">App.js</span>
+              <span className="text-xs px-2 py-1 bg-gray-800 rounded">index.js</span>
+              <span className="text-xs px-2 py-1 bg-gray-800 rounded">styles.css</span>
+            </div>
+            <div className="flex space-x-2">
+              <button className="text-xs px-2 py-1 bg-gray-800 rounded">Run</button>
+              <button className="text-xs px-2 py-1 bg-gray-800 rounded">Format</button>
+            </div>
+          </div>
+          <pre className="text-green-400">
+{`import { useState } from 'react';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -20,79 +34,9 @@ export default function App() {
       </button>
     </div>
   );
-}`,
-  '/index.js': `import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./styles.css";
-import App from "./App";
-
-const root = createRoot(document.getElementById("root"));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);`,
-  '/styles.css': `body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 1rem;
-  background-color: #f5f5f5;
-}
-
-.App {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: #333;
-  margin-top: 0;
-}
-
-button {
-  background-color: #4f46e5;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-top: 1rem;
-}
-
-button:hover {
-  background-color: #4338ca;
-}`,
-};
-
-export function Editor() {
-  const [files] = useState(defaultFiles);
-
-  return (
-    <Card className="h-full">
-      <CardContent className="p-0 h-full">
-        <Sandpack
-          theme={atomDark}
-          template="react"
-          files={files}
-          options={{
-            showNavigator: true,
-            showTabs: true,
-            showLineNumbers: true,
-            showInlineErrors: true,
-            wrapContent: true,
-            editorHeight: 600,
-            classes: {
-              'sp-wrapper': 'h-full rounded-lg overflow-hidden',
-              'sp-layout': 'h-full',
-              'sp-stack': 'h-full',
-            },
-          }}
-        />
+}`}
+          </pre>
+        </div>
       </CardContent>
     </Card>
   );
