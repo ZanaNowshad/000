@@ -1,7 +1,8 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { appRouter } from '@zaibuld/api';
 
-export const runtime = 'edge';
+// Remove edge runtime to avoid crypto dependency issues
+// export const runtime = 'edge';
 
 function createContext() {
   return {};
