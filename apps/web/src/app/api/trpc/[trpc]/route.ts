@@ -1,7 +1,11 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
-import { appRouter, createContext } from '@zaibuld/api';
+import { appRouter } from '@zaibuld/api';
 
 export const runtime = 'edge';
+
+function createContext() {
+  return {};
+}
 
 export async function GET(req: Request) {
   return fetchRequestHandler({

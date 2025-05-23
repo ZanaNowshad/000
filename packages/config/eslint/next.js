@@ -4,7 +4,6 @@ module.exports = {
   ...react,
   extends: [
     ...react.extends,
-    "next",
     "next/core-web-vitals",
   ],
   rules: {
