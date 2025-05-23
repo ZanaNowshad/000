@@ -4,7 +4,7 @@ ZAIBuilD is a next-generation, AI-driven full-stack IDE and orchestration platfo
 
 ## Overview
 
-This repository contains the initial setup for the ZAIBuilD project. The full implementation will be added through pull requests.
+ZAIBuilD is architected as a next-generation, AI-driven full-stack IDE and orchestration platform built on Next.js 14 (App Router, React Server Components, Edge Runtime) with React 18 and TypeScript in a Turborepo/PNPM monorepo, styled via Tailwind CSS and Radix UI with Lucide icons, animations courtesy of Framer Motion, GSAP ScrollTrigger, Lottie, and three.js/react-three-fiber for WebGL particle effects and parallax, all deployed on Vercel Edge Functions (or AWS Lambda) with a PlanetScale–Prisma–MySQL backend, type-safe tRPC/Zod APIs, Clerk/NextAuth.js OAuth+JWT+Twilio 2FA and reCAPTCHA v3 authentication.
 
 ## Features
 
