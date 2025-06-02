@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { cn } from '../utils';
-import { motion } from 'framer-motion';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   animated?: boolean;
@@ -8,24 +7,18 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, animated = false, ...props }, ref) => {
-    const Comp = animated ? motion.div : 'div';
-    const animationProps = animated
-      ? {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          transition: { duration: 0.5 },
-          viewport: { once: true },
-        }
-      : {};
+    // Note: animation functionality temporarily removed to fix type issues
+    // Will be re-implemented in a future update
+    const animationClass = animated ? 'animate-fade-in' : '';
 
     return (
-      <Comp
+      <div
         ref={ref}
         className={cn(
           'rounded-lg border bg-white shadow-sm p-6',
+          animationClass,
           className
         )}
-        {...animationProps}
         {...props}
       />
     );
@@ -48,24 +41,28 @@ CardHeader.displayName = 'CardHeader';
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <h3
     ref={ref}
     className={cn('text-xl font-semibold leading-none tracking-tight', className)}
     {...props}
-  />
+  >
+    {children}
+  </h3>
 ));
 CardTitle.displayName = 'CardTitle';
 
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <p
     ref={ref}
     className={cn('text-sm text-gray-500', className)}
     {...props}
-  />
+  >
+    {children}
+  </p>
 ));
 CardDescription.displayName = 'CardDescription';
 

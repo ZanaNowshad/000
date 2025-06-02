@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start --port 12000",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.10.0",

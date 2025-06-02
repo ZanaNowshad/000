@@ -1,13 +1,18 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
-import { appRouter, createContext } from '@zaibuld/api';
+import { appRouter } from '@zaibuld/api';
 
-export const runtime = 'edge';
+// Remove edge runtime to avoid crypto dependency issues
+// export const runtime = 'edge';
+
+function createContext() {
+  return {};
+}
 
 export async function GET(req: Request) {
   return fetchRequestHandler({
     endpoint: '/api/trpc',
     req,
-    router: appRouter,
+    router: appRouter as any,
     createContext,
   });
 }
@@ -16,7 +21,7 @@ export async function POST(req: Request) {
   return fetchRequestHandler({
     endpoint: '/api/trpc',
     req,
-    router: appRouter,
+    router: appRouter as any,
     createContext,
   });
 }

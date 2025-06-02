@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@zaibuld/ui';
 import { Send, Bot, X, Maximize2, Minimize2 } from 'lucide-react';
 
@@ -59,14 +58,12 @@ export function AIChat() {
   }, [messages]);
 
   return (
-    <motion.div
-      initial={false}
-      animate={{
+    <div 
+      className="fixed bottom-4 right-4 z-40 transition-all duration-300"
+      style={{
         height: isExpanded ? '600px' : '400px',
         width: isExpanded ? '600px' : '350px',
       }}
-      transition={{ duration: 0.3 }}
-      className="fixed bottom-4 right-4 z-40"
     >
       <Card className="h-full flex flex-col">
         <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
@@ -100,14 +97,11 @@ export function AIChat() {
           </div>
         </CardHeader>
         <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
-          <AnimatePresence>
+          <div>
             {messages.map((message) => (
-              <motion.div
+              <div
                 key={message.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className={`flex ${
+                className={`flex mb-4 opacity-100 transition-opacity duration-300 ${
                   message.role === 'user' ? 'justify-end' : 'justify-start'
                 }`}
               >
@@ -126,13 +120,11 @@ export function AIChat() {
                     })}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
             {isLoading && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex justify-start"
+              <div
+                className="flex justify-start mb-4 opacity-100 transition-opacity duration-300"
               >
                 <div className="bg-gray-100 text-gray-800 rounded-lg px-4 py-2">
                   <div className="flex space-x-1">
@@ -147,10 +139,10 @@ export function AIChat() {
                     />
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
             <div ref={messagesEndRef} />
-          </AnimatePresence>
+          </div>
         </CardContent>
         <div className="p-4 border-t">
           <form onSubmit={handleSubmit} className="flex space-x-2">
@@ -168,6 +160,6 @@ export function AIChat() {
           </form>
         </div>
       </Card>
-    </motion.div>
+    </div>
   );
 }

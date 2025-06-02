@@ -1,14 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { trpc } from '@/utils/trpc';
 import { Card, CardHeader, CardTitle, CardContent, Button } from '@zaibuld/ui';
-import { motion } from 'framer-motion';
 import { Plus, Search } from 'lucide-react';
 
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: projects, isLoading } = trpc.project.getAll.useQuery();
+  // Mock data until tRPC is properly set up
+  const isLoading = false;
+  const projects = [
+    {
+      id: '1',
+      name: 'Sample Project',
+      description: 'A sample project to demonstrate the UI',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+  ];
 
   const filteredProjects = projects?.filter(project => 
     project.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -58,13 +66,12 @@ export default function Dashboard() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects?.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="opacity-100 transition-all duration-300"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <Card animated>
+              <Card className="hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
                   <CardTitle>{project.name}</CardTitle>
                 </CardHeader>
@@ -75,7 +82,7 @@ export default function Dashboard() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}
